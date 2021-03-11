@@ -1,9 +1,8 @@
 .content{
-  display: block;
-  width: 300px;
-  height: 500px;
-  margin: 0 auto;
-  border: 1px black solid;
+  width: 450px;
+  height: 300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.274);
+  position: relative;
 }
 
 .headerText {
@@ -11,9 +10,20 @@
   flex-direction: row-reverse;
 }
 
+
 .closeBtn {
-  text-align: center;
-  padding: 10px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: rgb(68, 68, 68);
+  cursor: pointer;
+}
+
+.pagination{
+  display: flex;
+  align-items: center;
 }
 
 

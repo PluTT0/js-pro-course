@@ -8,7 +8,7 @@ export function showNotification(data) {
     return
   }
   
-  const currentNotificationID = data.map(notification => notification.id== currentNotification)
+  const currentNotificationID = data.map(notification => notification.id == currentNotification)
   const notificationContent = document.createElement('div');
 
   notificationContent.innerHTML = `
@@ -16,26 +16,24 @@ export function showNotification(data) {
       <div class="headerText">
         <button class="closeBtn">x</button>
         <div class="text">
-          <h3 class="notificationTitle"></h3>
-          <p class="notificationText"></p>
+          <h3 class="notificationTitle">${data[currentNotification].title}</h3>
+          <p class="notificationText">${data[currentNotification].phrase}</p>
         </div>
       </div>
-        
-          
+  
       <div class="windowText">
         <label for="disableNotifications"><input type="checkbox" name="disableNotifications" class="disableNotifications">Disable Tips</label>
-        <button class="btnNext">></button>
         <div class="pagination">
-          ${data.map(notification => 
-            `<input 
-              type="radio"
-              name="point"
-              class ="notificationPoint"
-              id='${notification.id}'
-              checked="${notification.id === currentNotification}"/>`).join('')
-          }
-        </div>
-        <button class="btnPrev"><</button> 
+        <button class="btnPrev"><</button>
+        ${data.map(notification => 
+          `<input 
+            type="radio"
+            name="point"
+            class ="notificationPoint"
+            id='${notification.id}'
+            checked="${notification.id  === currentNotification}"/>`).join('')
+        }
+        <button class="btnNext">></button>
       </div>
          
     </section>
@@ -67,8 +65,7 @@ function setLisener(notification,data,notificationID) {
   const section = document.querySelector('.content');
   
   
-  const input = pagination.children[notification];
-  console.log(input)
+
   
   function displayText(notification) {
     notificationTitle.innerHTML = data[notification].title;
@@ -76,18 +73,20 @@ function setLisener(notification,data,notificationID) {
     setInLocalStorage(notification)
   }
 
+  console.log(data[notification])
   pagination.addEventListener('click', (eve)=>{
-    notification = eve.target.id -1;
+    if(eve.target === pointBtn)
+    notification = eve.target.id-1;
     displayText(notification)
+    console.log(eve.target.id)
   });
 
   prevBtn.addEventListener('click', () => {
-    if(notification === -1) {
-      notifiation = data.length - 1
+    if(notification <= 0) {
+      notifiation = data.length
     }else {
       notification = notification -1
     }
-    input.checked = true
     displayText(notification)
   })
 
