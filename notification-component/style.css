@@ -4,6 +4,7 @@ button {
   background-color: #fff;
   font-size: 25px;
   margin: 5px;
+  cursor: pointer;
 }
 
 .content{
@@ -27,7 +28,6 @@ button {
   right: 10px;
   background: transparent;
   color: rgb(68, 68, 68);
-  cursor: pointer;
 }
 
 .pagination {
@@ -40,7 +40,6 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  position: sticky;
 }
 
 .btnNext{
