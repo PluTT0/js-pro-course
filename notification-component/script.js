@@ -2,13 +2,12 @@
 
 export function showNotification(data) {
   const isNotificationsDisabled = localStorage.getItem('displayNotification') || false;
-  const currentNotification = localStorage.getItem('activeNotification') || 0;
+  const currentNotificationId = Number(localStorage.getItem('activeNotification')) || 1;
 
   if(isNotificationsDisabled) {
-    return
+    return;
   }
   
-  const currentNotificationID = data.map(notification => notification.id == currentNotification)
   const notificationContent = document.createElement('div');
 
   notificationContent.innerHTML = `
@@ -16,95 +15,96 @@ export function showNotification(data) {
       <div class="headerText">
         <button class="closeBtn">x</button>
         <div class="text">
-          <h3 class="notificationTitle">${data[currentNotification].title}</h3>
-          <p class="notificationText">${data[currentNotification].phrase}</p>
+          <h3 class="notificationTitle"></h3>
+          <p class="notificationText"></p>
         </div>
       </div>
   
-      <div class="windowText">
+      <div class="windowFooter">
         <label for="disableNotifications"><input type="checkbox" name="disableNotifications" class="disableNotifications">Disable Tips</label>
         <div class="pagination">
-        <button class="btnPrev"><</button>
+        <button class="btnPrev"></button>
         ${data.map(notification => 
           `<input 
             type="radio"
             name="point"
             class ="notificationPoint"
             id='${notification.id}'
-            checked="${notification.id  === currentNotification}"/>`).join('')
+            ${notification.id === currentNotificationId ? 'checked': " "} "/>`).join('')
         }
-        <button class="btnNext">></button>
+        <button class="btnNext"></button>
       </div>
          
     </section>
   `;
   document.body.append(notificationContent);
-  document.querySelector('.disableNotifications').addEventListener('click', setInLocalStorage)
 
-  setLisener(currentNotification,data,currentNotificationID)
+  setLisener(data,currentNotificationId);
+  showText(data,currentNotificationId);
 }
 
-function setInLocalStorage(notification) {
-  const disableBtn = document.querySelector('.disableNotifications');
-  if(disableBtn.checked === true) {
-    localStorage.setItem('displayNotification', 'none')
-  } else {
-    localStorage.setItem('activeNotification', `${notification}`)
-  }
-}
-
-
-function setLisener(notification,data,notificationID) {
-  const pagination = document.querySelector('.pagination');
-  const pointBtn = document.querySelector('.notificationPoint');
+const showText = (data,notificationId)=> {
   const notificationTitle = document.querySelector('.notificationTitle');
   const notificationText = document.querySelector('.notificationText');
+
+  notificationTitle.innerHTML = data[notificationId-1].title;
+  notificationText.innerHTML = data[notificationId-1].phrase;
+
+  localStorage.setItem('activeNotification', notificationId);
+}
+
+
+
+function setLisener(data,notificationId) {
+  const pagination = document.querySelector('.pagination');
   const prevBtn = document.querySelector('.btnPrev');
   const nextBtn = document.querySelector('.btnNext');
   const closeBtn = document.querySelector('.closeBtn');
   const section = document.querySelector('.content');
-  
-  
+  const disableBtn = document.querySelector('.disableNotifications');
 
-  
-  function displayText(notification) {
-    notificationTitle.innerHTML = data[notification].title;
-    notificationText.innerHTML = data[notification].phrase;
-    setInLocalStorage(notification)
-  }
-
-  console.log(data[notification])
-  pagination.addEventListener('click', (eve)=>{
-    if(eve.target === pointBtn)
-    notification = eve.target.id-1;
-    displayText(notification)
-    console.log(eve.target.id)
+  disableBtn.addEventListener('click', ()=>{
+    if(disableBtn.checked === true) {
+      localStorage.setItem('displayNotification', 'none')
+    } else if(disableBtn.checked === false) {
+      localStorage.clear('displayNotification')
+    }
   });
 
-  prevBtn.addEventListener('click', () => {
-    if(notification <= 0) {
-      notifiation = data.length
-    }else {
-      notification = notification -1
+  pagination.addEventListener('click', (event) =>{
+    if(event.target.name === 'point'){
+      notificationId = event.target.id
+      showText(data,notificationId);
     }
-    displayText(notification)
-  })
+  });
 
-  nextBtn.addEventListener('click', () => {
-    if(notification === data.length) {
-      notifiation = 0
-    }else {
-      notification = +notification+1
+  nextBtn.addEventListener('click', ()=>{
+    if(notificationId === data.length) {
+      notificationId = 1;
+      showText(data,notificationId);
+      document.getElementById(notificationId).checked = true;
+    }else{
+      notificationId = notificationId +1;
+      showText(data,notificationId);
+      document.getElementById(notificationId).checked = true;
     }
-    displayText(notification)
-  })
+  });
 
-  closeBtn.addEventListener('click', () => {
-    setInLocalStorage(notification);
+  prevBtn.addEventListener('click', ()=>{
+    if(notificationId === 1) {
+      notificationId = data.length;
+      showText(data,notificationId);
+      document.getElementById(notificationId).checked = true;
+    }else{
+      notificationId = notificationId -1;
+      showText(data,notificationId);
+      document.getElementById(notificationId).checked = true;
+    }
+  });
+
+  closeBtn.addEventListener('click', ()=>{
     section.remove();
-  })
+  });
 }
-
-
-
-
+  
+  
