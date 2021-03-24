@@ -1,0 +1,13 @@
+
+.weatherHistoryBlock {
+  display: flex;
+  color: #fff;
+  background:linear-gradient(59deg, rgba(235,120,83,0.2) 25%, rgba(0,212,255,0.3) 100%);
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.weatherHistoryCard {
+  margin: 16px 0;
+  background:rgba(0, 0, 0, 0.5);
+}

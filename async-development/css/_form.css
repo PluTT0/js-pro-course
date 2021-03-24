@@ -1,0 +1,17 @@
+form {
+  text-align: center;
+}
+
+.user_form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#city_input, #country_input {
+  margin: 2px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.781);
+  border: 1px solid rgba(99, 35, 24, 0.452);
+}
