@@ -1,27 +1,20 @@
-import { getWeather } from './getWether.js'
 
-const cityInput = document.querySelector('#city_input');
-const countryInput = document.querySelector('#country_input');
-const buttonSubmit = document.querySelector('#button_submit');
-const locationBtn = document.querySelector('#button_location');
 const weatherCard = document.querySelector(`.weatherBlock`);
 const weatherTitle = document.querySelector(`.weather_title`);
 const weatherIconElement = document.querySelector(`.weather_icon`);
 const weatherValue = document.querySelector(`.weather_value`);
 const weatherSubtitle = document.querySelector(`.weather_subtitle`);
 const weatherFeals = document.querySelector(`.weather_feals`);
-const historyBtn = document.querySelector('.historyBtn');
-const clearHistoryBtn = document.querySelector('.clearHistoryBtn');
-
+const localtime = document.querySelector('.local_time');
 
 export function displayWeather(data) {
   weatherCard.style.display = 'flex';
   weatherIconElement.setAttribute('src', data.current.weather_icons);
-
   weatherSubtitle.textContent = `Now on the street: ${data.current.weather_descriptions}`;
   weatherValue.textContent = `${data.current.temperature}°C`;
   weatherTitle.textContent = `${data.location.name},${data.location.country}`;
   weatherFeals.textContent = `Feals like: ${data.current.feelslike}°C`;
+  localtime.textContent = `${data.location.localtime}`;
   setInLockalStorage(data);
 }
 
@@ -39,7 +32,7 @@ const setInLockalStorage = (data) => {
   localStorage.setItem('weatherHistory', JSON.stringify(weatherData));
 }
 
-const createHistoryBlock = () => {
+export const createHistoryBlock = () => {
   document.querySelector(`.weatherBlock`).style.display = 'none';
   const weatherData = JSON.parse(localStorage.getItem('weatherHistory'));
   const weatherHistoryBlock = document.createElement('div');
@@ -63,57 +56,3 @@ const createHistoryBlock = () => {
   console.log(weatherData);
 }
 
-const myLocalPosition = () =>{
-  function success(position){
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    getWeather(latitude,longitude);
-  }
-  function error(){
-  alert('I can not find your position');
-  }
-  navigator.geolocation.getCurrentPosition(success,error);
-}
-
-
-buttonSubmit.addEventListener('click', (eve)=>{
-  eve.preventDefault();
-  if(cityInput.value === '') {
-    return;
-  } else if(document.querySelector('.weatherHistoryBlock')) {
-    getWeather(cityInput.value,countryInput.value);
-    document.querySelector('.weatherHistoryBlock').remove();
-  } else {
-    getWeather(cityInput.value,countryInput.value)
-  }
-});
-  
-locationBtn.addEventListener('click',(eve) =>{
-  eve.preventDefault();
-  if(document.querySelector('.weatherHistoryBlock')){
-    document.querySelector('.weatherHistoryBlock').remove();
-    myLocalPosition()
-  } else {
-    myLocalPosition()
-  }
-})
-
-historyBtn.addEventListener('click', () => {
-  if(document.querySelector('.weatherHistoryBlock')){
-    return;
-  } else if(weatherCard.style.display === 'flex') {
-    weatherCard.style.display = 'none';
-    createHistoryBlock();
-  } else {
-    createHistoryBlock();
-  }
-})
-  
-clearHistoryBtn.addEventListener('click', () =>{
-  if(document.querySelector('.weatherHistoryBlock')) {
-    localStorage.removeItem('weatherHistory');
-    document.querySelector('.weatherHistoryBlock').remove();
-  } else {
-    localStorage.removeItem('weatherHistory');
-  }
-})

@@ -1,6 +1,6 @@
-@import "../async-development/css/_form.css";
-@import "../async-development/css/_history.css";
-@import "../async-development/css/_weatherBlock.css";
+@import "./_form.css";
+@import "./_history.css";
+@import "./_weatherBlock.css";
 
 body{
   background: url('https://cdn.pixabay.com/photo/2020/06/15/17/10/ancient-5302623_1280.jpg') center no-repeat;
@@ -55,3 +55,11 @@ ul {
 }
 
 
+@media screen and (max-width:780px){
+ .weatherHistoryBlock{
+    flex-direction: column;
+  }
+ .weatherHistoryCard {
+  background:rgba(0, 0, 0, 0.5);
+  }
+}

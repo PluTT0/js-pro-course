@@ -14,10 +14,8 @@ export const getWeather = (firstInput,seccondInput) =>{
       })  
   } catch {
     document.querySelector(`.weatherBlock`).innerHTML=`
-    <h2>Something was wrong</h2>`
+    <h2>Something was wrong</h2>`;
   }
-  
-     
 }
 
 

@@ -1,3 +1,12 @@
+.container {
+  margin: 150px auto;
+  max-width: 1600px;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .weatherBlock {
   padding: 15px;
   display: none;
@@ -35,11 +44,6 @@
   color: rgb(255, 255, 255);
 }
 
-.container {
-  margin: 150px auto;
-  max-width: 1600px;
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.local_time {
+  color: rgb(255, 255, 255);
 }
