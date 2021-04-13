@@ -29,27 +29,21 @@ class Counter extends Component {
         <div className="number">{ showNumber }</div>
         <div className="buttonsBlock">
           <button
-            onClick={() => {
-              this.setState(this.onClickPlusBtn);
-            }}
+            onClick={this.onClickPlusBtn}
             type="button"
             className="plus"
           >
             +
           </button>
           <button
-            onClick={() => {
-              this.setState(this.onClickResetBtn);
-            }}
+            onClick={this.onClickResetBtn}
             type="button"
             className="reset"
           >
             reset
           </button>
           <button
-            onClick={() => {
-              this.setState(this.onClickMinusBtn);
-            }}
+            onClick={this.onClickMinusBtn}
             type="button"
             className="minus"
           >
