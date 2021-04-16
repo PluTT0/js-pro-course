@@ -13,10 +13,10 @@ const Form = () => {
   const emojiList = data.filter((emoji) => emoji.title.includes(inputValue) || emoji.keywords.includes(inputValue));
 
   return (
-    <form className="emojiSerch">
+    <div className="emojiSerch">
       <TextField id="outlined-basic" label="Serch emoji" variant="outlined" type="text" value={inputValue} onChange={onInputChange} />
       <EmojiContainer emojiList={emojiList.slice(0, 20)} />
-    </form>
+    </div>
   );
 };
 
