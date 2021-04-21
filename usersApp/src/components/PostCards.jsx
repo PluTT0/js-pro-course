@@ -19,7 +19,7 @@ const PostCards = ({setCards, posts, users}) => {
             </Card.Body>
             <Card.Footer>
                 <p className="userName">
-                  Autor: {<Users user={users.filter((user) => user.id === post.userId)} />}
+                  Autor: {<Users user={users.find((user) => user.id === post.userId)} />}
                 </p>
             </Card.Footer>
           </Card>

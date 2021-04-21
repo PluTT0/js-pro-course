@@ -22,7 +22,7 @@ const UserContent = () => {
     setCardOnPage(cardOnPage + 5)
   };
   
-  if(postsInfo.length === 0) { 
+  if(postsInfo.length === 0 || usersInfo.length === 0) { 
     return(
       <Loading />
     );

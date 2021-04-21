@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 import ModalWindow from './ModalWindow';
 
 const Users = ({user}) => {
-  const userName = user.map((userInfo) => (userInfo.name));
   const [show, setShow] = useState(false);
   const windowClose = () => setShow(false);
   const windowShow = () => setShow(true);
@@ -11,17 +10,17 @@ const Users = ({user}) => {
   return (
     <>
       <Card.Link onClick={windowShow} href="#">
-        {userName}
+        {user.name}
       </Card.Link>
-      {user.map((userInfo) =><ModalWindow 
-        key={userInfo.id} 
+      <ModalWindow 
+        key={user.id} 
         show={show} 
         close={windowClose} 
-        address={userInfo.address} 
-        name={userInfo.name} 
-        email={userInfo.email} 
-        phone={userInfo.phone}
-      />)}
+        address={user.address} 
+        name={user.name} 
+        email={user.email} 
+        phone={user.phone}
+      />
     </>
   );
 };
