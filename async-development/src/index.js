@@ -1,5 +1,5 @@
 import { getWeather } from './getWeather.js'
-import { createHistoryBlock } from './index.js'
+import { createHistoryBlock } from './createBlock.js'
 
 const cityInput = document.querySelector('#city_input');
 const countryInput = document.querySelector('#country_input');
