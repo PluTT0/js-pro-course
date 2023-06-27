@@ -1,4 +1,4 @@
-import { displayWeather } from './index.js';
+import { displayWeather } from './createBlock.js';
 
 const HOST = `http://api.weatherstack.com/`;
 const access = 'current?access_key=be44a583ec1740ffa9bed5ab0baba134&query=';
