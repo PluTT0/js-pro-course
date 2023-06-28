@@ -4,27 +4,36 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script defer type="text/javascript" src="index.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
   <title>Document</title>
 </head>
 <body>
   <div class="container">
     <form name="user_form">
-      <input type="text" placeholder="Enter your city" id="city_input">
-
-      <button type="submit" id="button_submit">Search</button>
+      <input  required type="text" placeholder="Enter your city" id="city_input">
+      <input type="text" placeholder="Enter your country" id="country_input">
     </form>
+    <div class="buttons_block">
+      <button id="button_submit">Search</button>
+      <button id="button_location">My location</button>
+    </div>
 
-    <div class="weather">
+    <div class="historyBtnBlock">
+      <button class="historyBtn">Show history</button>
+      <button class="clearHistoryBtn">Clear history</button>
+    </div>
+
+    <div class="weatherBlock">
       <img class="weather_icon"></img>
-      <h2 class="weather_title"></h2>
       <p class="weather_value"></p>
+      <h2 class="weather_title"></h2>
       <p class="weather_subtitle"></p>
       <p class="weather_feals"></p>
+      <p class="local_time"></p>
     </div>
-    
-  </div>
-  
+
+<script src="./dist/bundle.js"></script>
 </body>
 </html>

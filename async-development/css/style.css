@@ -1,0 +1,65 @@
+@import "./_form.css";
+@import "./_history.css";
+@import "./_weatherBlock.css";
+
+body{
+  background: url('https://cdn.pixabay.com/photo/2020/06/15/17/10/ancient-5302623_1280.jpg') center no-repeat;
+  background-size: cover;
+  font-size: 20px;
+}
+
+h2 {
+  margin: 5px;
+}
+
+p {
+  font-style: italic;
+  margin: 5px;
+}
+
+button {
+  margin: 3px;
+  border: 1px solid rgba(99, 35, 24, 0.452);
+  border-radius: 5px;
+  background-color: #fff;
+  width: 150px;
+}
+
+button:hover {
+  background-color:rgba(252, 121, 98, 0.733);
+}
+
+button:focus{
+  border: none;
+}
+
+li {
+  list-style-type: none;
+  font-style: italic;
+}
+
+h4 {
+  margin: 15px;
+  text-align: center;
+  background: -webkit-linear-gradient(rgba(0,212,255,1), rgba(255, 255, 255, 1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+ul {
+  max-width: 300px;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  padding: 0 20px 20px;
+  background:rgba(0, 0, 0, 0.2);
+}
+
+
+@media screen and (max-width:780px){
+ .weatherHistoryBlock{
+    flex-direction: column;
+  }
+ .weatherHistoryCard {
+  background:rgba(0, 0, 0, 0.5);
+  }
+}
